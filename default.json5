@@ -1,0 +1,31 @@
+{
+  assignees: ["tang3cko"],
+  reviewers: ["tang3cko"],
+
+  extends: [
+    "config:best-practices",
+
+    // https://docs.renovatebot.com/presets-default/
+    ":timezone(Asia/Tokyo)",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimitNone",
+    'schedule:earlyMondays',
+
+    // Keep biome.json $schema version in sync with @biomejs/biome package
+    "customManagers:biomeVersions",
+  ],
+
+  // Automerge
+  // automergeStrategy is intentionally omitted: it is silently ignored when
+  // platformAutomerge=true (renovatebot/renovate#41177). GitHub repo merge
+  // settings control the actual strategy instead.
+  platformAutomerge: true,
+
+  // Package rules
+  packageRules: [
+    {
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      automerge: true,
+    },
+  ],
+}
