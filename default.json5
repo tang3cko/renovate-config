@@ -27,5 +27,10 @@
       matchUpdateTypes: ["minor", "patch", "pin", "digest"],
       automerge: true,
     },
+    {
+      // Skip Unity Editor version bumps: the version in ProjectVersion.txt requires every developer and CI machine to have that exact Unity Editor installed, so upgrades must be a deliberate manual decision rather than an automated update.
+      matchManagers: ["unity3d"],
+      enabled: false,
+    },
   ],
 }
