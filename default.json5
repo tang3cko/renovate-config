@@ -21,6 +21,9 @@
   // settings control the actual strategy instead.
   platformAutomerge: true,
 
+  // Apply a minimum release age across all datasources, not just npm: config:best-practices only waits 3 days for npm via security:minimumReleaseAgeNpm, so this extends the same cooldown to every datasource to let malware scanners run and reduce supply chain risk before an update is raised.
+  minimumReleaseAge: "3 days",
+
   // Package rules
   packageRules: [
     {
