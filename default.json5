@@ -32,5 +32,21 @@
       matchManagers: ["unity3d"],
       enabled: false,
     },
+
+    // GitHub Action digest updates are left for review. A digest update is
+    // what a retargeted tag looks like: an existing tag force-pushed to new
+    // commits keeps its version and its release timestamp, so no release-age
+    // cooldown holds it back (renovatebot/renovate#44820). Automerging it
+    // would let a hijacked action reach the default branch with CI as the
+    // only gate.
+    //
+    // matchDepTypes is required: the github-actions manager also owns
+    // jobs.<id>.container.image, whose depType is `container`, not `action`.
+    {
+      matchManagers: ["github-actions"],
+      matchDepTypes: ["action"],
+      matchUpdateTypes: ["digest"],
+      automerge: false,
+    },
   ],
 }
