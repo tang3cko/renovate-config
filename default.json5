@@ -32,5 +32,20 @@
       matchManagers: ["unity3d"],
       enabled: false,
     },
+
+    // Action digests are left for review. A digest update is what a retargeted
+    // tag looks like: an existing tag force-pushed to new commits keeps its
+    // version and release timestamp, so no release-age cooldown can hold it
+    // back. The tj-actions/changed-files pattern would otherwise reach the
+    // default branch unreviewed.
+    //
+    // matchDepTypes is required: the github-actions manager also owns
+    // jobs.<id>.container.image, whose depType is `container`, not `action`.
+    {
+      matchManagers: ["github-actions"],
+      matchDepTypes: ["action"],
+      matchUpdateTypes: ["digest"],
+      automerge: false,
+    },
   ],
 }
