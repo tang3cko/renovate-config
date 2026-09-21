@@ -53,6 +53,17 @@
       matchManagers: ["unity3d"],
       enabled: false,
     },
+    {
+      // Skip .NET SDK and runtime bumps: the version in global.json must match on every developer and CI machine, so upgrades must be a deliberate manual decision. The dotnet-version datasource serves only dotnet-sdk and dotnet-runtime:
+      //   https://docs.renovatebot.com/modules/datasource/dotnet-version/
+      matchDatasources: ["dotnet-version"],
+      enabled: false,
+    },
+    {
+      // Skip Godot engine bumps: Renovate has no Godot manager or datasource, and the engine version only appears as Godot.NET.Sdk (csproj Sdk attribute) and GodotSharp. The editor build must match them on every developer and CI machine, so upgrades must be a deliberate manual decision.
+      matchPackageNames: ["Godot.NET.Sdk", "GodotSharp"],
+      enabled: false,
+    },
 
     // GitHub Action digest updates are left for review. A digest update is
     // what a retargeted tag looks like: an existing tag force-pushed to new
