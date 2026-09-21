@@ -6,7 +6,7 @@ Account-wide Renovate inheritance config and shared preset for `tang3cko`.
 
 The Mend-hosted Renovate App auto-discovers `<owner>/renovate-config/org-inherited-config.json` and applies it to every Renovate run across the account — no per-repo setup required. The discovery is platform-agnostic: Renovate computes `parentOrg` by string-splitting the repo path, so it works the same for GitHub User accounts as for Organizations.
 
-This repo also hosts the shared `default.json5` preset that every onboarded repo extends.
+This repo also hosts the shared `default.json5` preset that every opted-in repo extends.
 
 ```
        Mend                       this repo                       each repo
@@ -18,10 +18,10 @@ This repo also hosts the shared `default.json5` preset that every onboarded repo
   │            │            │  (shared preset)    │         │                      │
   └─────┬──────┘            └─────────────────────┘         └──────────┬───────────┘
         │                                                              ▲
-        └──── onboards (opens initial Renovate onboarding PR) ─────────┘
+        └──── processes only repos that already have a config file ────┘
 ```
 
-When onboarded, each repo's `.github/renovate.json5` is auto-generated with:
+Renovate is opt-in: `onboarding` is `false` and `requireConfig` is `required`, so no onboarding PR is opened and a repo without a config file is skipped. To opt a repo in, add `.github/renovate.json5` to it by hand:
 
 ```json5
 {
