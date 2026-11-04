@@ -60,8 +60,8 @@
       enabled: false,
     },
     {
-      // Skip Godot engine bumps: Renovate has no Godot manager or datasource, and the engine version only appears as Godot.NET.Sdk (csproj Sdk attribute) and GodotSharp. The editor build must match them on every developer and CI machine, so upgrades must be a deliberate manual decision.
-      matchPackageNames: ["Godot.NET.Sdk", "GodotSharp"],
+      // Skip Godot engine bumps: Renovate has no Godot manager, so the engine version appears as Godot.NET.Sdk (csproj Sdk attribute), GodotSharp, and godotengine/godot (a mise github: tool). The editor build must match them on every developer and CI machine, so upgrades must be a deliberate manual decision.
+      matchPackageNames: ["Godot.NET.Sdk", "GodotSharp", "godotengine/godot"],
       enabled: false,
     },
 
